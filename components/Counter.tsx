@@ -43,7 +43,6 @@ const CounterStyled = styled.div`
     width: 3.4vw;
     height: 3.4vw;
     border: none;
-    background-color: #fdd207;
     border-radius: 5px;
     cursor: pointer;
     position: relative;
@@ -53,15 +52,14 @@ const CounterStyled = styled.div`
     }
   }
 
-  .plusImgBtn {
-    width: 25px;
+  .plusBtn {
+    background: url('/plus.png') no-repeat center;
+    background-size: cover;
   }
 
-  .minusImgBtn {
-    position: absolute;
-    left: 8px;
-    top: 10px;
-    width: 30px;
+  .minusBtn {
+    background: url('/minus.png') no-repeat center;
+    background-size: cover;
   }
 `;
 
@@ -83,12 +81,12 @@ export default function Counter({ step = '1', ...props }: ICounterProps) {
         <p className="text">сек.</p>
       </div>
       <div className="counterBlock">
-        <button className="counterBtn" name="minus" onClick={changeCounterHandler}>
-          <img className="minusImgBtn" src="/minusSymb.svg" alt="Минус" />
-        </button>
-        <button className="counterBtn" name="plus" onClick={changeCounterHandler}>
-          <img className="plusImgBtn" src="/plusSymb.svg" alt="Плюс" />
-        </button>
+        <button
+          className="counterBtn minusBtn"
+          name="minus"
+          onClick={changeCounterHandler}
+        ></button>
+        <button className="counterBtn plusBtn" name="plus" onClick={changeCounterHandler}></button>
       </div>
     </CounterStyled>
   );

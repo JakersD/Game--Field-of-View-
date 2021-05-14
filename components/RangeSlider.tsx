@@ -42,13 +42,14 @@ const RangeStyled = styled.div`
     outline: none;
     cursor: pointer;
     background: ${(props) =>
-      `-webkit-linear-gradient(left, #fdd207 0%, #fdd207 ${props.run}%, #fff ${props.run}%, #fff 100%);`}
+      `-webkit-linear-gradient(left, #fdd207 0%, #fdd207 ${props.run}px, #fff ${props.run}px, #fff 100%);`}
     
     &::-webkit-slider-thumb {
       -webkit-appearance: none;
-      background-color: #fdd207;
-      width: 20px;
-      height: 20px;
+      width: 2vw;
+      height: 2vw;
+      background: url('/thumb.png') no-repeat center;
+      background-size: cover;
       border-radius: 50%;
       cursor: grab;
     }
@@ -62,8 +63,26 @@ const RangeStyled = styled.div`
 
 export default function RangeSlider({ step = '1', ...props }: IRangeProps) {
   const [values, setValues] = useState([]);
-  const [sliderStep, setSliderStep] = useState(0);
   const [runnableTrack, setRunnableTrack] = useState(0);
+
+  const changeRunnableTrack = () => {
+    const result = [];
+    for (let i = +props.min; i <= +props.max; i += +step) {
+      result.push(i);
+    }
+
+    const sliderWidth: number = document.querySelector<HTMLElement>('.slider').offsetWidth;
+    const distance = sliderWidth / result.length;
+
+    let newResult = 0;
+    result.forEach((v: number, i) => {
+      if (v === +props.value) {
+        newResult = distance * i + i * 5.2;
+      }
+
+      setRunnableTrack(newResult);
+    });
+  };
 
   useEffect(() => {
     const result = [];
@@ -71,17 +90,12 @@ export default function RangeSlider({ step = '1', ...props }: IRangeProps) {
       result.push(i);
     }
 
-    const sliderWidth: number = document.querySelector<HTMLElement>('.slider').offsetWidth;
-    const distance = sliderWidth / result.length / (sliderWidth / 100);
-
-    setSliderStep(distance + 2);
+    changeRunnableTrack();
     setValues(result);
   }, []);
 
   useEffect(() => {
-    const position = +props.value / +props.min;
-    //TODO: Доделать полосу, с каждым шагом она вываливается дальше чем нужно, нужно делить на процент какой-то
-    setRunnableTrack(Math.floor(sliderStep * +position - sliderStep));
+    changeRunnableTrack();
   }, [props.value]);
 
   return (

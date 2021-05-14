@@ -52,7 +52,7 @@ export default function Index({ words }: IIndexProps) {
     setState({ ...state, speed: value });
   };
 
-  const wordSplit = (wordsArr) => {
+  const wordSplit = (wordsArr: string[]) => {
     const resultArr: string[] = [];
 
     for (let i = 0; i < wordsArr.length; i++) {
@@ -143,13 +143,19 @@ export default function Index({ words }: IIndexProps) {
 }
 
 export const getServerSideProps: GetServerSideProps<IIndexProps> = async () => {
-  const words = await fetch('http://localhost:4200/words').then((res) => res.json());
+  try {
+    const words = await fetch('http://localhost:4200/words').then((res) => res.json());
 
-  if (Object.keys(words).length === 0) {
+    if (Object.keys(words).length === 0) {
+      return {
+        props: { words: null },
+      };
+    }
+
+    return { props: { words } };
+  } catch (error) {
     return {
       props: { words: null },
     };
   }
-
-  return { props: { words } };
 };
