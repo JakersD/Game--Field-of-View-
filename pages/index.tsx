@@ -101,7 +101,7 @@ export default function Index({ words }: IIndexProps) {
             <RangeSlider
               title="Сколько букв в словах"
               min="3"
-              max="12"
+              max="11"
               name="letters"
               onChange={sliderChangeHandler}
               value={state.letters}

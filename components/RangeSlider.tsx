@@ -12,7 +12,6 @@ interface IRangeProps {
 }
 
 const RangeStyled = styled.div`
-  // margin: 0vw;
   margin: 0 1vw;
   margin-bottom: 3vh;
   width: 36vw;
@@ -20,42 +19,43 @@ const RangeStyled = styled.div`
   background-color: #fff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 48.2498px;
-  .title {
-    font-size: 2.4vw;
-    color: #371548;
-    margin-bottom: 10px;
-    text-align: center;
-    margin-bottom: 15px;
-  }
+`;
 
-  .values {
-    display: flex;
-    justify-content: space-between;
-    margin-left: 0.5vw;
-    margin-bottom: 1.45vw;
-    font-size: 1.9vw;
-  }
+const RangeTitle = styled.h3`
+  font-size: 2.4vw;
+  color: #371548;
+  margin-bottom: 10px;
+  text-align: center;
+  margin-bottom: 15px;
+`;
 
-  .slider {
-    width: 100%;
-    -webkit-appearance: none;
-    border-radius: 10px;
-    height: 1.1vw;
-    outline: none;
-    cursor: pointer;
-    background: ${(props) =>
-      `-webkit-linear-gradient(left, #fdd207 0%, #fdd207 ${props.run}px, #fff ${props.run}px, #fff 100%);`}
-    
-    &::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 2.1vw;
-      height: 2.1vw;
-      background: url('/thumb.png') no-repeat center;
-      background-size: cover;
-      border-radius: 50%;
-      cursor: grab;
-    }
-  }
+const RangeValues = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-left: 15px;
+  margin-bottom: 1.45vw;
+  font-size: 1.9vw;
+`;
+
+const RangeSliderInput = styled.input`
+width: 100%;
+-webkit-appearance: none;
+border-radius: 10px;
+height: 1.1vw;
+outline: none;
+cursor: pointer;
+background: ${(props) =>
+  `-webkit-linear-gradient(left, #fdd207 0%, #fdd207 ${props.run}px, #fff ${props.run}px, #fff 100%);`}
+
+&::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 2.1vw;
+  height: 2.1vw;
+  background: url('/thumb.png') no-repeat center;
+  background-size: cover;
+  border-radius: 50%;
+  cursor: grab;
+}
 `;
 
 export default function RangeSlider({ step = '1', ...props }: IRangeProps) {
@@ -96,15 +96,16 @@ export default function RangeSlider({ step = '1', ...props }: IRangeProps) {
   }, [props.value]);
 
   return (
-    <RangeStyled run={runnableTrack}>
-      <h3 className="title">{props.title}</h3>
+    <RangeStyled>
+      <RangeTitle>{props.title}</RangeTitle>
       <div>
-        <div className="values">
+        <RangeValues>
           {values.map((v, i) => (
             <p key={i}>{v}</p>
           ))}
-        </div>
-        <input
+        </RangeValues>
+        <RangeSliderInput
+          run={runnableTrack}
           type="range"
           min={props.min}
           max={props.max}
