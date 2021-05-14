@@ -16,11 +16,11 @@ interface IIndexProps {
 const Title = styled.h1`
   display: inline-block;
   color: #2b3172;
-  padding-top: 7vh;
+  padding-top: 7.7vh;
   display: flex;
   justify-content: center;
-  font-size: 3vw;
-  margin-bottom: 50px;
+  font-size: 3.2vw;
+  margin-bottom: 12vh;
 `;
 
 const Table = styled.div`
@@ -37,10 +37,10 @@ const Table = styled.div`
 
 export default function Index({ words }: IIndexProps) {
   const [state, setState] = useState({
-    wordsCount: '5',
-    distance: '25',
-    letters: '5',
-    distanceInc: '5',
+    wordsCount: '7',
+    distance: '30',
+    letters: '9',
+    distanceInc: '30',
     speed: '1',
   });
 
@@ -101,7 +101,7 @@ export default function Index({ words }: IIndexProps) {
             <RangeSlider
               title="Сколько букв в словах"
               min="3"
-              max="11"
+              max="12"
               name="letters"
               onChange={sliderChangeHandler}
               value={state.letters}

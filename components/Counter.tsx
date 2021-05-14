@@ -15,8 +15,9 @@ const CounterStyled = styled.div`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 50px;
   width: 36vw;
-  margin: 30px;
-  padding: 28px 0;
+  margin: 0 1vw;
+  margin-bottom: 3vh;
+  padding: 1.9vw 0 1.3vw;
 
   .counterBlock {
     display: flex;
@@ -25,23 +26,23 @@ const CounterStyled = styled.div`
   }
 
   .text {
-    font-size: 2vw;
+    font-size: 2.4vw;
     color: #371548;
   }
 
   .counter {
-    font-size: 2vw;
-    width: 5vw;
+    font-size: 2.4vw;
+    width: 6.4vw;
     border: 1px solid #000;
-    border-radius: 10px;
+    border-radius: 25vw;
     text-align: center;
-    margin: 0 10px 15px 20px;
+    margin: 0 0.8vw 0.75vw 3vw;
     outline: none;
   }
 
   .counterBtn {
-    width: 3.4vw;
-    height: 3.4vw;
+    width: 4.7vw;
+    height: 4.7vw;
     border: none;
     border-radius: 5px;
     cursor: pointer;

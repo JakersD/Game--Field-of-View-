@@ -3,9 +3,9 @@ import styled from 'styled-components';
 
 const Logo = styled.img`
   position: absolute;
-  right: 2.5vw;
-  top: 4.5vh;
-  width: 15vw;
+  right: 2.7vw;
+  top: 5.8vh;
+  width: 17vw;
 `;
 
 export default function Layout({ children }) {

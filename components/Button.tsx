@@ -16,7 +16,7 @@ const ButtonStyled = styled.div`
   .btn {
     background-color: #fdd207;
     border: none;
-    width: 20vw;
+    width: 19.5vw;
     height: 6vw;
     border-radius: 80px;
     text-align: center;
