@@ -16,7 +16,7 @@ const CounterStyled = styled.div`
   border-radius: 50px;
   width: 36vw;
   margin: 30px;
-  padding: 30px 0;
+  padding: 28px 0;
 
   .counterBlock {
     display: flex;
@@ -67,10 +67,10 @@ const CounterStyled = styled.div`
 
 export default function Counter({ step = '1', ...props }: ICounterProps) {
   const changeCounterHandler = (e: React.MouseEvent<HTMLInputElement>) => {
-    if (e.currentTarget.name === 'plus') {
+    if (e.currentTarget.name === 'plus' && +props.value < 5) {
       return props.onChange(String(+props.value + 0.5));
     }
-    if (+props.value > 1) {
+    if (e.currentTarget.name === 'minus' && +props.value > 1) {
       return props.onChange(String(+props.value - 0.5));
     }
   };

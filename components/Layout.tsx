@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Link from 'next/link';
 import styled from 'styled-components';
 
 const Logo = styled.img`
@@ -11,7 +11,11 @@ const Logo = styled.img`
 export default function Layout({ children }) {
   return (
     <>
-      <Logo src="/logo.png" alt="Логотип" />
+      <Link href="/">
+        <a>
+          <Logo src="/logo.png" alt="Логотип" />
+        </a>
+      </Link>
       <main>{children}</main>
     </>
   );
